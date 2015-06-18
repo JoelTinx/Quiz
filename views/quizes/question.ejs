@@ -1,6 +1,5 @@
-<h2>Quiz: el juego de las preguntas</h2>
-<form action="/quizes/answer" class="form-horizontal">
-  <label for="pregunta">Pregunta: <%= pregunta %></label>
-  <input type="text" name="respuesta", class="form-control", placeholder="Respuesta">
-  <input type="submit" value="Enviar", class="btn btn-success">
-</form>
+<div class="list-group">
+  <% for(var i=0; i<quizes.length; i++){ %>
+    <li class="list-group-item"><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></li>
+  <% } %>
+</div>

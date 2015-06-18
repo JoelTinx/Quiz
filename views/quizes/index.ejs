@@ -1,5 +1,4 @@
-<div class="list-group">
-  <% for(var i=0; i<quizes.length; i++){ %>
-    <li class="list-group-item"><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></li>
-  <% } %>
-</div>
+<form class="form-horizontal" method="get" action="/quizes">
+  <input type="text" name="search" placeholder="¿Que buscas?" class="form-control" required="true">
+  <input type="submit" value="Buscar" class="btn btn-info">
+</form>

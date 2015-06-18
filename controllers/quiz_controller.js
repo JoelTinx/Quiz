@@ -19,8 +19,14 @@ exports.show = function (req, res) {
 }
 
 exports.index = function (req, res) {
-  models.Quiz.findAll().then(function (quizes) {
-    res.render('quizes/index', {quizes: quizes})
+    res.render('quizes/index')
+}
+
+exports.search = function (req, res) {
+  var paramSearch = "%" + req.query.search.replace(" ", "%") + "%";
+  console.log(paramSearch);
+  models.Quiz.findAll({where: ["pregunta like ?", paramSearch]}).then(function (quizes) {
+    res.render('quizes/question', {quizes: quizes})
   })
 }
 
