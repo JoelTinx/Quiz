@@ -1,0 +1,14 @@
+<form method="post" action="/quizes/<%= quiz.id %>?_method=put">
+  <div class="form-group">
+    <label for="pregunta">Pregunta</label>
+    <input type="text" class="form-control" name="quiz[pregunta]" value="<%= quiz.pregunta %>" placeholder="Pregunta">
+  </div>
+  <div class="form-group">
+    <label for="respuesta">Respuesta</label>
+    <input type="text" class="form-control" name="quiz[respuesta]" value="<%= quiz.respuesta %>" placeholder="Respuesta">
+  </div>
+  <div class="form-group">
+    <input type="submit" value="Guardar" class="btn btn-success">
+    <a href="/quizes" class="btn btn-danger">Cancelar</a>
+  </div>
+</form>
