@@ -15,22 +15,21 @@ exports.load = function (req, res, next, quizId) {
 }
 
 exports.show = function (req, res) {
-  res.render('quizes/show', {quiz: req.quiz})
+  res.render('quizes/show', {quiz: req.quiz, errors: []})
 }
 
 exports.index = function (req, res) {
   models.Quiz.findAll().then(function (quizes) {
-    res.render('quizes/index', {quizes: quizes})
+    res.render('quizes/index', {quizes: quizes, errors: []})
   })
 }
 
 exports.answer = function (req, res) {
+  var resultado = "Incorrecto"
     if(req.query.respuesta === req.quiz.respuesta){
-      res.render('quizes/answer', {respuesta: 'Correcto'})
+      resultado = "Correcto"
     }
-    else {
-      res.render('quizes/answer', {respuesta: 'Incorrecto'})
-    }
+    res.render('quizes/answer', {respuesta: resultado, errors: []})
 }
 
 exports.nuevo = function (req, res) {
@@ -40,14 +39,19 @@ exports.nuevo = function (req, res) {
       respuesta: ""
     }
   )
-  res.render('quizes/nuevo', {quiz: quiz})
+  res.render('quizes/nuevo', {quiz: quiz, errors: []})
 }
 
 exports.guardar = function (req, res) {
-  console.log("\n" + req.body.quiz + "\n");
   var quiz = models.Quiz.build(req.body.quiz)
-
-  quiz.save({fields: ["pregunta", "respuesta"]}).then(function () {
-    res.redirect('/quizes')
+  quiz.validate().then(function (err) {
+    if (err) {
+      res.render('quizes/nuevo', {quiz: quiz, errors:err.errors})
+    }
+    else {
+      quiz.save({fields: ["pregunta", "respuesta"]}).then(function () {
+        res.redirect('/quizes')
+      })
+    }
   })
 }

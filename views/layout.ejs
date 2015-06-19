@@ -32,6 +32,16 @@
   <section class="main">
     <div class="container">
       <div class="col-xs-12">
+        <div>
+          <% if(errors.length){ %>
+            <div class="alert alert-danger" role="alert">
+              <h4>Corregir Errores</h4>
+              <% for(var i in errors) { %>
+                <span><%= errors[i].message %></span><br>
+              <% } %>
+            </div>
+          <% } %>
+        </div>
         <%- body %>
       </div>
     </div>
