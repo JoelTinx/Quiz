@@ -19,14 +19,8 @@ exports.show = function (req, res) {
 }
 
 exports.index = function (req, res) {
-    res.render('quizes/index')
-}
-
-exports.search = function (req, res) {
-  var paramSearch = "%" + req.query.search.replace(" ", "%") + "%";
-  console.log(paramSearch);
-  models.Quiz.findAll({where: ["pregunta like ?", paramSearch]}).then(function (quizes) {
-    res.render('quizes/question', {quizes: quizes})
+  models.Quiz.findAll().then(function (quizes) {
+    res.render('quizes/index', {quizes: quizes})
   })
 }
 
@@ -37,4 +31,23 @@ exports.answer = function (req, res) {
     else {
       res.render('quizes/answer', {respuesta: 'Incorrecto'})
     }
+}
+
+exports.nuevo = function (req, res) {
+  var quiz = models.Quiz.build(
+    {
+      pregunta: "",
+      respuesta: ""
+    }
+  )
+  res.render('quizes/nuevo', {quiz: quiz})
+}
+
+exports.guardar = function (req, res) {
+  console.log("\n" + req.body.quiz + "\n");
+  var quiz = models.Quiz.build(req.body.quiz)
+
+  quiz.save({fields: ["pregunta", "respuesta"]}).then(function () {
+    res.redirect('/quizes')
+  })
 }
