@@ -1,5 +1,15 @@
 <form method="post" action="/quizes/<%= quiz.id %>?_method=put">
   <div class="form-group">
+    <label for="tema">Tema</label>
+    <select class="form-control" name="quiz[tema]" value="<%= quiz.tema %>">
+      <option value="otro">Otro</option>
+      <option value="humanidades">Humanidades</option>
+      <option value="ocio">Ocio</option>
+      <option value="ciencia">Ciencia</option>
+      <option value="tecnologia">Tecnología</option>
+    </select>
+  </div>
+  <div class="form-group">
     <label for="pregunta">Pregunta</label>
     <input type="text" class="form-control" name="quiz[pregunta]" value="<%= quiz.pregunta %>" placeholder="Pregunta">
   </div>

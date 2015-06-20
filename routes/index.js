@@ -20,7 +20,7 @@ router.put('/quizes/:quizId(\\d+)', quizController.update)
 router.delete('/quizes/:quizId(\\d+)', quizController.destroy)
 
 router.get('/creditos', function(req, res){
-  res.render('creditos')
+  res.render('creditos', {errors: []})
 })
 
 module.exports = router;
