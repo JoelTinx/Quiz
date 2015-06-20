@@ -1,6 +1,12 @@
 <div class="list-group">
   <% for(var i=0; i<quizes.length; i++){ %>
-    <li class="list-group-item"><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a><span> </span><a class="btn btn-default btn-xs pull-right" href="quizes/<%= quizes[i].id %>/editar">Editar</a></li>
+    <li class="list-group-item">
+      <a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a><span> </span>
+      <a class="btn btn-default btn-xs" href="quizes/<%= quizes[i].id %>/editar">Editar</a>
+      <form action="quizes/<%= quizes[i].id %>?_method=delete" method="post">
+        <button type="submit" class="btn btn-default btn-xs" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">Borrar</button>
+      </form>
+    </li>
   <% } %>
 </div>
 <br>
