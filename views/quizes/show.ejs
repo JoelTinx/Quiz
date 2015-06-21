@@ -3,3 +3,9 @@
   <input class="form-control" type="text" name="respuesta" placeholder="Respuesta">
   <input class="btn btn-info" type="submit" value="Enviar">
 </form>
+<a href="/quizes/<%= quiz.id %>/comments/new" class="btn btn-primary">Nuevo Comentario</a>
+<br>
+<p><strong>Comentarios:</strong></p>
+<% for(index in quiz.Comments){ %>
+    <p> <%= quiz.Comments[index].texto %> </p>
+<% } %>
