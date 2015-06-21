@@ -21,10 +21,17 @@
         <a href="/" class="navbar-brand">Quiz</a>
       </div>
       <div class="collapse navbar-collapse" id="menu">
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav">
           <li><a href="/">Inicio</a></li>
           <li><a href="/quizes">Preguntas</a></li>
           <li><a href="/creditos">Créditos</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if(!session.user){ %>
+            <li><a href="/login">Login</a></li>
+          <% } else {%>
+            <li><span><%= session.user.username %></span><a href="/logout">Logout</a></li>
+          <% }%>
         </ul>
       </div>
     </nav>
