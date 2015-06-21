@@ -17,14 +17,14 @@ router.post('/login', sessionController.create)
 router.get('/logout', sessionController.destroy)
 
 //Definición de rutas de /quizes
-router.get('/quizes', quizController.index)
-router.get('/quizes/nuevo', quizController.nuevo)
-router.get('/quizes/:quizId(\\d+)', quizController.show)
+router.get('/quizes',                      quizController.index)
+router.get('/quizes/:quizId(\\d+)',        quizController.show)
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer)
-router.post('/quizes/guardar', quizController.guardar)
-router.get('/quizes/:quizId(\\d+)/editar', quizController.editar)
-router.put('/quizes/:quizId(\\d+)', quizController.update)
-router.delete('/quizes/:quizId(\\d+)', quizController.destroy)
+router.get('/quizes/nuevo',                sessionController.loginRequired, quizController.nuevo)
+router.post('/quizes/guardar',             sessionController.loginRequired, quizController.guardar)
+router.get('/quizes/:quizId(\\d+)/editar', sessionController.loginRequired, quizController.editar)
+router.put('/quizes/:quizId(\\d+)',        sessionController.loginRequired, quizController.update)
+router.delete('/quizes/:quizId(\\d+)',     sessionController.loginRequired, quizController.destroy)
 
 //Definición de rutas de /comments
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new)
