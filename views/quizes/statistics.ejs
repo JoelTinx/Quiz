@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>Estadisticas</h3>
+  </div>
+  <div class="panel-body">
+    <table class="table table-bordered">
+      <thead>
+        <th>Dato</th>
+        <th>Valor</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Número de Preguntas</td>
+          <td class="text-center"><%= numeroPreguntas %></td>
+        </tr>
+        <tr>
+          <td>Número de Comentarios</td>
+          <td class="text-center"><%= numeroComentarios %></td>
+        </tr>
+        <tr>
+          <td>Número medio de comentarios por pregunta</td>
+          <td class="text-center"><%= media %></td>
+        </tr>
+        <tr>
+          <td>Número de preguntas sin comentario</td>
+          <td class="text-center"><%= pregsSinCo %></td>
+        </tr>
+        <tr>
+          <td>Número de preguntas con comentario</td>
+          <td class="text-center"><%= pregsConCo %></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <a href="/quizes" class="btn btn-success">Regresar</a>
+  </div>
+</div>

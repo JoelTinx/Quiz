@@ -22,6 +22,8 @@ router.get('/logout', sessionController.destroy)
 router.get('/quizes',                      quizController.index)
 router.get('/quizes/:quizId(\\d+)',        quizController.show)
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer)
+router.get('/quizes/statistics',           quizController.statistics)
+
 router.get('/quizes/nuevo',                sessionController.loginRequired, quizController.nuevo)
 router.post('/quizes/guardar',             sessionController.loginRequired, quizController.guardar)
 router.get('/quizes/:quizId(\\d+)/editar', sessionController.loginRequired, quizController.editar)

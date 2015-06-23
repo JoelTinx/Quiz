@@ -27,6 +27,21 @@ app.use(session());
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next) {
+    if(req.session.user){
+        if(!req.session.marcatiempo){
+            req.session.marcatiempo=(new Date()).getTime();
+        }else{
+            if((new Date()).getTime()-req.session.marcatiempo > 120000){
+                delete req.session.user;
+            }else{
+                req.session.marcatiempo=(new Date()).getTime();
+            }
+        }
+    }
+    next();
+});
+
 app.use(function (req, res, next) {
   if (!req.path.match(/\/login|\/logout/)) {
     req.session.redir = req.path

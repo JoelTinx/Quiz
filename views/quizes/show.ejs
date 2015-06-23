@@ -1,16 +1,32 @@
-<form class="form-horizontal" method="get" action="/quizes/<%= quiz.id %>/answer">
-  Pregunta: <%= quiz.pregunta %> <p>
-  <input class="form-control" type="text" name="respuesta" placeholder="Respuesta">
-  <input class="btn btn-info" type="submit" value="Enviar">
-</form>
-<a href="/quizes/<%= quiz.id %>/comments/new" class="btn btn-primary">Nuevo Comentario</a>
-<br>
-<p><strong>Comentarios:</strong></p>
-<% for(index in quiz.Comments){ %>
-  <% if(quiz.Comments[index].publicado || session.user){ %>
-    <p> <%= quiz.Comments[index].texto %> </p>
-    <% if(session.user && !quiz.Comments[index].publicado){ %>
-      <a href="/quizes/<%= quiz.id %>/comments/<%= quiz.Comments[index].id %>/publish" class="btn btn-xs btn-default">Publicar</a>
-    <% } %>
-  <% } %>
-<% } %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>¿ <%= quiz.pregunta %> ?</h4>
+  </div>
+  <div class="panel-body">
+    <form class="form-horizontal" method="get" action="/quizes/<%= quiz.id %>/answer">
+      <input class="form-control" type="text" name="respuesta" placeholder="Respuesta">
+      <input class="btn btn-info" type="submit" value="Responder">
+    </form>
+    <br>
+    <br>
+    <a href="/quizes" class="btn btn-sm btn-success">Regresar</a>
+    <a href="/quizes/<%= quiz.id %>/comments/new" class="btn btn-sm btn-primary">Nuevo Comentario</a>
+    <br>
+    <br>
+    <div class="panel panel-default">
+      <h4>Comentarios:</h4>
+      <table class="table table-bordered">
+        <% for(index in quiz.Comments){ %>
+          <tr>
+            <% if(quiz.Comments[index].publicado || session.user){ %>
+              <td> <%= quiz.Comments[index].texto %> </td>
+              <% if(session.user && !quiz.Comments[index].publicado){ %>
+                <td><a href="/quizes/<%= quiz.id %>/comments/<%= quiz.Comments[index].id %>/publish" class="btn btn-xs btn-default">Publicar</a></td>
+              <% } %>
+            <% } %>
+          </tr>
+        <% } %>
+      </table>
+    </div>
+  </div>
+</div>
